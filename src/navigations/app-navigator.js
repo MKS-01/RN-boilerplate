@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '_scenes/home';
-import AssetsScreen from '_scenes/assets';
-import SearchScreen from '_scenes/search';
-import CalendarScreen from '_scenes/calendar';
+import AboutScreen from '_scenes/about';
 import SettingsScreen from '_scenes/settings';
-import Icons from 'react-native-vector-icons/Ionicons';
+// import Icons from 'react-native-vector-icons/Ionicons';
 import { GRAY_DARK } from '_styles/colors';
 // import { ThemeProvider } from 'styled-components';
-import { SocialRecap } from '_styles/theme';
+// import { theme } from '_styles/theme';
 
 const Tab = createBottomTabNavigator();
 
 function RootTabs() {
   return (
-    // <ThemeProvider theme={SocialRecap}>
+    // <ThemeProvider theme={theme}>
     <Tab.Navigator
     // screenOptions={({ route }) => ({
     //   tabBarIcon: ({ focused, color, size }) => {
@@ -41,9 +39,7 @@ function RootTabs() {
     // }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Assets" component={AssetsScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Calendar" component={CalendarScreen} />
+      <Tab.Screen name="About" component={AboutScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
     // </ThemeProvider>
