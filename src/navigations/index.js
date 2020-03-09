@@ -5,6 +5,7 @@ import AuthNavigator from './auth-navigator';
 import AppNavigator from './app-navigator';
 import { AuthProvider } from '_store/auth-context';
 import SplashScreen from '_scenes/splash';
+import { ManageThemeProvider } from '_store/theme-context'
 
 export default function App({ navigation }) {
   const [state, dispatch] = React.useReducer(
@@ -89,10 +90,12 @@ export default function App({ navigation }) {
   }
 
   return (
-    <AuthProvider value={authContext}>
-      <NavigationContainer>
-        {state.userToken == "test" ? <AuthNavigator /> : <AppNavigator />}
-      </NavigationContainer>
-    </AuthProvider>
+    <ManageThemeProvider>
+      <AuthProvider value={authContext}>
+        <NavigationContainer>
+          {state.userToken == "test" ? <AuthNavigator /> : <AppNavigator />}
+        </NavigationContainer>
+      </AuthProvider>
+    </ManageThemeProvider>
   );
 }

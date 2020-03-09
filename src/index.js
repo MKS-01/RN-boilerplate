@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+
 import { AppearanceProvider } from 'react-native-appearance';
 
 import React from 'react';
