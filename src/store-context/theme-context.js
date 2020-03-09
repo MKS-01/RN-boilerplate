@@ -2,8 +2,10 @@ import React, { createContext, useState, useEffect } from 'react'
 import { StatusBar } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 import { Appearance, AppearanceProvider } from 'react-native-appearance'
-import lightTheme from './light'
-import darkTheme from './dark'
+import lightTheme from '_styles/light'
+import darkTheme from '_styles/dark'
+
+const defaultMode = 'light';
 
 const ThemeContext = createContext({
     mode: defaultMode,
@@ -12,7 +14,7 @@ const ThemeContext = createContext({
 
 export const useTheme = () => React.useContext(ThemeContext)
 
-const ManageThemeProvider = ({ children }) => {
+export const ManageThemeProvider = ({ children }) => {
     const [themeState, setThemeState] = useState(defaultMode)
 
     const setMode = mode => {
@@ -31,9 +33,9 @@ const ManageThemeProvider = ({ children }) => {
             <ThemeProvider
                 theme={themeState === 'dark' ? darkTheme.theme : lightTheme.theme}>
                 <>
-                    <StatusBar
+                    {/* <StatusBar
                         barStyle={themeState === 'dark' ? 'light-content' : 'dark-content'}
-                    />
+                    /> */}
                     {children}
                 </>
             </ThemeProvider>
