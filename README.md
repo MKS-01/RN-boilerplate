@@ -1,6 +1,6 @@
 # RN-boilerplate
 
-##concept covered
+## concept covered
 
 - Store: Hooks + context api
 
