@@ -23,3 +23,4 @@ const Container = styled.SafeAreaView`
     align-items: center;
     background: ${props => props.theme.background};
   `
+
