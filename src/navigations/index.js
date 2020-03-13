@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import React, { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useReducer, useCallback } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthNavigator from './auth-navigator';
@@ -7,16 +7,10 @@ import AppNavigator from './app-navigator';
 // import { AuthProvider, useAuthValue } from '_store/auth-context';
 import SplashScreen from '_scenes/splash';
 
-export const AuthContext = createContext(
-  {
-    isLoading: false,
-    isSignout: true,
-    userToken: null,
-  }
-);
+export const AuthContext = createContext();
 
 export default function App({ }) {
-  // const [state, dispatch] = useReducer(reducer, initialCount, init);
+
   const [state, dispatch] = useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -95,7 +89,6 @@ export default function App({ }) {
     [],
   );
 
-  console.log("check state ....", state)
 
 
   return (
