@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Text, Button } from 'react-native'
 import CheckConnection from '_utils/CheckConnection'
+import { useAuthValue } from '_navigations'
+
 
 const Home = () => {
+    const { signOut } = useAuthValue()
 
     let network = CheckConnection();
 
@@ -10,6 +13,11 @@ const Home = () => {
         return (
             <SafeAreaView>
                 <Text>HOme:connected</Text>
+                <Button
+                    title="Sign out"
+                    onPress={() => signOut()}
+                />
+
             </SafeAreaView>
         )
     }
