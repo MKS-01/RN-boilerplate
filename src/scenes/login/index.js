@@ -7,17 +7,20 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-// import { useAuthValue } from 'src/store-context/*';
+import { useAuthValue } from '_store/auth-context';
 
 const signIn = (username, password) => {
   // console.log('check', username, password);
 };
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  // const { signIn } = React.useContext(AuthContext);
+  const { signIn } = useAuthValue()
+  const { signOut } = useAuthValue()
+
+  console.log("check....", signIn);
   return (
     <SafeAreaView>
       <View>
@@ -37,7 +40,12 @@ const LoginScreen = ({ navigation }) => {
           title="Sign in"
           onPress={() => signIn({ username, password })}
         />
+        <Button
+          title="Sign out"
+          onPress={() => signOut()}
+        />
       </View>
+
     </SafeAreaView>
   );
 };
