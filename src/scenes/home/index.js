@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView, Text, Button } from 'react-native'
 import CheckConnection from '_utils/CheckConnection'
-import { useAuthValue } from '_navigations'
+import { useAuthValue } from '_store/auth-context'
 
 
 const Home = () => {

@@ -7,8 +7,8 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-// import { useAuthValue } from '_store/auth-context';
-import { useAuthValue } from '_navigations'
+import { useAuthValue } from '_store/auth-context';
+// import { useAuthValue } from '_navigations'
 
 const signIn = (username, password) => {
   // console.log('check', username, password);

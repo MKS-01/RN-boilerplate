@@ -4,10 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthNavigator from './auth-navigator';
 import AppNavigator from './app-navigator';
-// import { AuthProvider, useAuthValue } from '_store/auth-context';
+import { useAuthValue, AuthContext } from '_store/auth-context';
 import SplashScreen from '_scenes/splash';
 
-export const AuthContext = createContext();
+import { storeData, retriveData, removeValue } from '_utils/LocalStorage'
+
+
 
 export default function App({ }) {
 
@@ -46,13 +48,15 @@ export default function App({ }) {
     const bootstrapAsync = async () => {
       let userToken;
 
-      try {
-        userToken = await AsyncStorage.getItem('userToken');
+      // try {
+      //   userToken = await AsyncStorage.getItem('userToken');
 
-        console.log('token Check', userToken);
-      } catch (e) {
-        // Restoring token failed
-      }
+      //   console.log('token Check', userToken);
+      // } catch (e) {
+      //   // Restoring token failed
+      // }
+      userToken = await retriveData('userToken');
+      console.log('token Check', userToken);
 
       // After restoring token, we may need to validate it in production apps
 
@@ -73,10 +77,13 @@ export default function App({ }) {
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
-
+        storeData('userToken', 'dummy-auth-token');
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => {
+        dispatch({ type: 'SIGN_OUT' })
+        removeValue('userToken')
+      },
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
@@ -108,4 +115,4 @@ export default function App({ }) {
 
 }
 
-export const useAuthValue = () => useContext(AuthContext);
+
