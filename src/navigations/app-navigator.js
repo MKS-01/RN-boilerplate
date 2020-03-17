@@ -52,7 +52,7 @@ function RootTabs() {
 
 function Home() {
   return (
-    <HomeStack.Navigator initialRouteName="Login" headerMode="none">
+    <HomeStack.Navigator initialRouteName="Feed" headerMode="none">
       <HomeStack.Screen name="Feed" component={FeedScreen} />
       <HomeStack.Screen name="Story" component={StoryScreen} />
     </HomeStack.Navigator>
