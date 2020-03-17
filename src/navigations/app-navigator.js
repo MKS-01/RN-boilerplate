@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '_scenes/home';
+import FeedScreen from '_scenes/home/feed';
+import StoryScreen from '_scenes/home/story';
 import AboutScreen from '_scenes/about';
 import SettingsScreen from '_scenes/settings';
 // import Icons from 'react-native-vector-icons/Ionicons';
@@ -9,6 +12,7 @@ import { GRAY_DARK } from '_styles/colors';
 // import { theme } from '_styles/theme';
 
 const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
 
 function RootTabs() {
   return (
@@ -38,11 +42,20 @@ function RootTabs() {
     //   inactiveTintColor: GRAY_DARK,
     // }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="About" component={AboutScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
     // </ThemeProvider>
+  );
+}
+
+function Home() {
+  return (
+    <HomeStack.Navigator initialRouteName="Login" headerMode="none">
+      <HomeStack.Screen name="Feed" component={FeedScreen} />
+      <HomeStack.Screen name="Story" component={StoryScreen} />
+    </HomeStack.Navigator>
   );
 }
 

@@ -4,9 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthNavigator from './auth-navigator';
 import AppNavigator from './app-navigator';
-import { useAuthValue, AuthContext } from '_store/auth-context';
+import { AuthContext } from '_store/auth-context';
 import SplashScreen from '_scenes/splash';
-
 import { storeData, retriveData, removeValue } from '_utils/LocalStorage'
 
 
@@ -68,11 +67,11 @@ export default function App({ }) {
     bootstrapAsync();
   }, []);
 
+
   const authContext = useMemo(
     () => ({
       signIn: async data => {
 
-        console.log("sign in........")
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
@@ -111,8 +110,6 @@ export default function App({ }) {
       </NavigationContainer>
     </AuthContext.Provider >
   )
-
-
 }
 
 

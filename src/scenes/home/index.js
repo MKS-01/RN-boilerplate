@@ -1,34 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text, Button } from 'react-native'
-import CheckConnection from '_utils/CheckConnection'
-import { useAuthValue } from '_store/auth-context'
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Text, Button, View } from 'react-native';
+import CheckConnection from '_utils/CheckConnection';
+import { useAuthValue } from '_store/auth-context';
 
+const Home = ({ navigation }) => {
+  const { signOut } = useAuthValue();
 
-const Home = () => {
-    const { signOut } = useAuthValue()
+  let network = CheckConnection();
 
-    let network = CheckConnection();
+  // const [{ state: { } }] = useAuthValue();
+  // console.log("check........ state", state)
 
-    // const [{ state: { } }] = useAuthValue();
-    // console.log("check........ state", state)
-
-    if (network === true) {
-        return (
-            <SafeAreaView>
-                <Text>HOme:connected</Text>
-                <Button
-                    title="Sign out"
-                    onPress={() => signOut()}
-                />
-
-            </SafeAreaView>
-        )
-    }
+  if (network === true) {
     return (
-        <SafeAreaView>
-            <Text>Home:no network</Text>
-        </SafeAreaView>
-    )
-}
+      <SafeAreaView>
+        <Text>HOme:connected</Text>
+        <Button title="Sign out" onPress={() => signOut()} />
 
-export default Home
+        <View>
+          <Button
+            title="Go to About"
+            onPress={() => navigation.navigate('About')}
+          />
+        </View>
+      </SafeAreaView>
+    );
+  }
+  return (
+    <SafeAreaView>
+      <Text>Home:no network</Text>
+    </SafeAreaView>
+  );
+};
+
+export default Home;
