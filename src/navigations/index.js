@@ -1,17 +1,13 @@
 // import * as React from 'react';
-import React, { createContext, useContext, useEffect, useMemo, useReducer, useCallback } from 'react';
+import React, { useEffect, useMemo, useReducer } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-community/async-storage';
 import AuthNavigator from './auth-navigator';
 import AppNavigator from './app-navigator';
 import { AuthContext } from '_store/auth-context';
 import SplashScreen from '_scenes/splash';
-import { storeData, retriveData, removeValue } from '_utils/LocalStorage'
+import { storeData, retriveData, removeValue } from '_utils/LocalStorage';
 
-
-
-export default function App({ }) {
-
+export default function App({}) {
   const [state, dispatch] = useReducer(
     (prevState, action) => {
       switch (action.type) {
@@ -47,18 +43,10 @@ export default function App({ }) {
     const bootstrapAsync = async () => {
       let userToken;
 
-      // try {
-      //   userToken = await AsyncStorage.getItem('userToken');
-
-      //   console.log('token Check', userToken);
-      // } catch (e) {
-      //   // Restoring token failed
-      // }
       userToken = await retriveData('userToken');
       console.log('token Check', userToken);
 
       // After restoring token, we may need to validate it in production apps
-
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
       dispatch({ type: 'RESTORE_TOKEN', token: userToken });
@@ -67,11 +55,9 @@ export default function App({ }) {
     bootstrapAsync();
   }, []);
 
-
   const authContext = useMemo(
     () => ({
       signIn: async data => {
-
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
@@ -80,8 +66,8 @@ export default function App({ }) {
         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
       signOut: () => {
-        dispatch({ type: 'SIGN_OUT' })
-        removeValue('userToken')
+        dispatch({ type: 'SIGN_OUT' });
+        removeValue('userToken');
       },
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
@@ -95,21 +81,17 @@ export default function App({ }) {
     [],
   );
 
-
-
   return (
-    <AuthContext.Provider value={authContext} >
+    <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         {state.isLoading ? (
           <SplashScreen />
-        ) : state.userToken == null ?
-            <AuthNavigator />
-            :
-            <AppNavigator />
-        }
+        ) : state.userToken == null ? (
+          <AuthNavigator />
+        ) : (
+          <AppNavigator />
+        )}
       </NavigationContainer>
-    </AuthContext.Provider >
-  )
+    </AuthContext.Provider>
+  );
 }
-
-

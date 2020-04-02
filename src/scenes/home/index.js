@@ -8,9 +8,6 @@ const Home = ({ navigation }) => {
 
   let network = CheckConnection();
 
-  // const [{ state: { } }] = useAuthValue();
-  // console.log("check........ state", state)
-
   if (network === true) {
     return (
       <SafeAreaView>

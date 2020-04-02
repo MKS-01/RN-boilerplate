@@ -16,37 +16,11 @@ const HomeStack = createStackNavigator();
 
 function RootTabs() {
   return (
-    // <ThemeProvider theme={theme}>
-    <Tab.Navigator
-    // screenOptions={({ route }) => ({
-    //   tabBarIcon: ({ focused, color, size }) => {
-    //     let iconName;
-
-    //     if (route.name === 'Home') {
-    //       iconName = focused ? 'ios-home' : 'ios-home';
-    //     } else if (route.name === 'Assets') {
-    //       iconName = focused ? 'ios-bookmark' : 'ios-bookmark';
-    //     } else if (route.name === 'Search') {
-    //       iconName = focused ? 'ios-search' : 'ios-search';
-    //     } else if (route.name === 'Calendar') {
-    //       iconName = focused ? 'ios-calendar' : 'ios-calendar';
-    //     } else if (route.name === 'Settings') {
-    //       iconName = focused ? 'ios-settings' : 'ios-settings';
-    //     }
-
-    //     return <Icons name={iconName} size={size} color={color} />;
-    //   },
-    // })}
-    // tabBarOptions={{
-    //   activeTintColor: '#3373fa',
-    //   inactiveTintColor: GRAY_DARK,
-    // }}
-    >
+    <Tab.Navigator>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="About" component={AboutScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
-    // </ThemeProvider>
   );
 }
 
