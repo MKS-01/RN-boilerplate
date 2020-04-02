@@ -6,10 +6,6 @@ import FeedScreen from '_scenes/home/feed';
 import StoryScreen from '_scenes/home/story';
 import AboutScreen from '_scenes/about';
 import SettingsScreen from '_scenes/settings';
-// import Icons from 'react-native-vector-icons/Ionicons';
-import { GRAY_DARK } from '_styles/colors';
-// import { ThemeProvider } from 'styled-components';
-// import { theme } from '_styles/theme';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
