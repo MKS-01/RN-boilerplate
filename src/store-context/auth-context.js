@@ -1,11 +1,5 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext } from 'react';
 
 export const AuthContext = createContext();
-
-export const AuthProvider = ({ reducer, initialState, children }) => (
-    <AuthContext.Provider value={useReducer(reducer, initialState)}>
-        {children}
-    </AuthContext.Provider>
-);
 
 export const useAuthValue = () => useContext(AuthContext);

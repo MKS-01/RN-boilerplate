@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text } from 'react-native'
-import CheckConnection from '_utils/CheckConnection'
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Text, Button, View } from 'react-native';
+import CheckConnection from '_utils/CheckConnection';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  let network = CheckConnection();
 
-    let network = CheckConnection();
-
-    if (network === true) {
-        return (
-            <SafeAreaView>
-                <Text>HOme:connected</Text>
-            </SafeAreaView>
-        )
-    }
+  if (network === true) {
     return (
-        <SafeAreaView>
-            <Text>Home:no network</Text>
-        </SafeAreaView>
-    )
-}
+      <SafeAreaView>
+        <Text>HOme:connected</Text>
+      </SafeAreaView>
+    );
+  }
+  return (
+    <SafeAreaView>
+      <Text>Home:no network</Text>
+    </SafeAreaView>
+  );
+};
 
-export default Home
+export default Home;
